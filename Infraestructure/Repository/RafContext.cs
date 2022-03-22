@@ -341,6 +341,10 @@ namespace Infraestructure.Repository
 
         public void Delete<T>(int Id)
         {
+            //"basicamente" los datos del Headerstream lo pasamos a una lista excepto el id que queremos eliminar
+            //luego la lista la pasamos al archivo temporal, y luego el archivo temporal lo pasamos al headerstream
+
+
             try
             {
                 using (BinaryWriter bwHeader = new BinaryWriter(HeaderStream),
@@ -362,7 +366,7 @@ namespace Infraestructure.Repository
                             return;
                         }
 
-
+                  
                         long elimina = 8 + (Id - 1) * 4;
 
                     }
@@ -422,6 +426,131 @@ namespace Infraestructure.Repository
                 throw;
             }
            
+        }
+
+
+        //public List<T> ObtenerTemp<T>()
+        //{
+        //    List<T> listT = new List<T>();
+        //    int n = 0, k = 0;
+
+        //    try
+        //    {
+        //        using (BinaryReader brHeader = new BinaryReader(HeaderStream))
+        //        {
+        //            if (brHeader.BaseStream.Length > 0)
+        //            {
+        //                brHeader.BaseStream.Seek(0, SeekOrigin.Begin);
+        //                n = brHeader.ReadInt32();
+        //                k = brHeader.ReadInt32();
+        //            }
+        //        }
+
+        //        if (n == 0)
+        //        {
+        //            return listT;
+        //        }
+
+        //        for (int i = 0; i < n; i++)
+        //        {
+        //            int index;
+        //            using (BinaryReader brHeader = new BinaryReader(HeaderStream))
+        //            {
+        //                long posh = 8 + i * 4;
+        //                brHeader.BaseStream.Seek(posh, SeekOrigin.Begin);
+        //                index = brHeader.ReadInt32();
+        //            }
+
+        //            T t = Get<T>(index);
+        //            listT.Add(t);
+        //        }
+
+        //        return listT;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        public T obtener<T>(int id)
+        {
+            try
+            {
+                T newValue = (T)Activator.CreateInstance(typeof(T));
+                int n = 0, k = 0;
+                using (BinaryReader brHeader = new BinaryReader(HeaderStream),
+                                    brData = new BinaryReader(DataStream))
+                {
+                    if (brHeader.BaseStream.Length > 0)
+                    {
+                        brHeader.BaseStream.Seek(0, SeekOrigin.Begin);
+                        n = brHeader.ReadInt32();
+                        k = brHeader.ReadInt32();
+                    }
+
+                    if (id <= 0 || id > k)
+                    {
+                        return default(T);
+                    }
+
+                    PropertyInfo[] properties = newValue.GetType().GetProperties();
+                    long posh = 8 + (id - 1) * 4;
+                    //TODO Add Binary search to find the id
+                    brHeader.BaseStream.Seek(posh, SeekOrigin.Begin);
+                    int index = brHeader.ReadInt32();
+                    //TODO VALIDATE INDEX
+                    long posd = (index - 1) * size;
+                    brHeader.BaseStream.Seek(posd, SeekOrigin.Begin);
+                    foreach (PropertyInfo pinfo in properties)
+                    {
+                        Type type = pinfo.PropertyType;
+
+                        if (type.IsGenericType)
+                        {
+                            continue;
+                        }
+
+                        if (type == typeof(int))
+                        {
+                            pinfo.SetValue(newValue, brHeader.GetValue<int>(TypeCode.Int32));
+                        }
+                        else if (type == typeof(long))
+                        {
+                            pinfo.SetValue(newValue, brHeader.GetValue<long>(TypeCode.Int64));
+                        }
+                        else if (type == typeof(float))
+                        {
+                            pinfo.SetValue(newValue, brHeader.GetValue<float>(TypeCode.Single));
+                        }
+                        else if (type == typeof(double))
+                        {
+                            pinfo.SetValue(newValue, brHeader.GetValue<double>(TypeCode.Double));
+                        }
+                        else if (type == typeof(decimal))
+                        {
+                            pinfo.SetValue(newValue, brHeader.GetValue<decimal>(TypeCode.Decimal));
+                        }
+                        else if (type == typeof(char))
+                        {
+                            pinfo.SetValue(newValue, brHeader.GetValue<char>(TypeCode.Char));
+                        }
+                        else if (type == typeof(bool))
+                        {
+                            pinfo.SetValue(newValue, brHeader.GetValue<bool>(TypeCode.Boolean));
+                        }
+                        else if (type == typeof(string))
+                        {
+                            pinfo.SetValue(newValue, brHeader.GetValue<string>(TypeCode.String));
+                        }
+                    }
+                }
+                return newValue;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

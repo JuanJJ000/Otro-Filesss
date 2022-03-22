@@ -85,7 +85,7 @@ namespace practicaDepreciacion
         }
         private bool verificar()
         {
-            if (String.IsNullOrEmpty(txtIdBusca.Text) || String.IsNullOrEmpty(txtNombre.Text) || String.IsNullOrEmpty(txtValor.Text) || String.IsNullOrEmpty(txtVidaU.Text) || String.IsNullOrEmpty(txtValorR.Text))
+            if (String.IsNullOrEmpty(txtNombre.Text) || String.IsNullOrEmpty(txtValor.Text) || String.IsNullOrEmpty(txtVidaU.Text) || String.IsNullOrEmpty(txtValorR.Text))
             {
 
                 return false;
