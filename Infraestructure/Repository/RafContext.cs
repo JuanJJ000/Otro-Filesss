@@ -429,49 +429,49 @@ namespace Infraestructure.Repository
         }
 
 
-        //public List<T> ObtenerTemp<T>()
-        //{
-        //    List<T> listT = new List<T>();
-        //    int n = 0, k = 0;
+        public List<T> ObtenerTemp<T>()
+        {
+            List<T> listT = new List<T>();
+            int n = 0, k = 0;
 
-        //    try
-        //    {
-        //        using (BinaryReader brHeader = new BinaryReader(HeaderStream))
-        //        {
-        //            if (brHeader.BaseStream.Length > 0)
-        //            {
-        //                brHeader.BaseStream.Seek(0, SeekOrigin.Begin);
-        //                n = brHeader.ReadInt32();
-        //                k = brHeader.ReadInt32();
-        //            }
-        //        }
+            try
+            {
+                using (BinaryReader brHeader = new BinaryReader(HeaderStream))
+                {
+                    if (brHeader.BaseStream.Length > 0)
+                    {
+                        brHeader.BaseStream.Seek(0, SeekOrigin.Begin);
+                        n = brHeader.ReadInt32();
+                        k = brHeader.ReadInt32();
+                    }
+                }
 
-        //        if (n == 0)
-        //        {
-        //            return listT;
-        //        }
+                if (n == 0)
+                {
+                    return listT;
+                }
 
-        //        for (int i = 0; i < n; i++)
-        //        {
-        //            int index;
-        //            using (BinaryReader brHeader = new BinaryReader(HeaderStream))
-        //            {
-        //                long posh = 8 + i * 4;
-        //                brHeader.BaseStream.Seek(posh, SeekOrigin.Begin);
-        //                index = brHeader.ReadInt32();
-        //            }
+                for (int i = 0; i < n; i++)
+                {
+                    int index;
+                    using (BinaryReader brHeader = new BinaryReader(HeaderStream))
+                    {
+                        long posh = 8 + i * 4;
+                        brHeader.BaseStream.Seek(posh, SeekOrigin.Begin);
+                        index = brHeader.ReadInt32();
+                    }
 
-        //            T t = Get<T>(index);
-        //            listT.Add(t);
-        //        }
+                    T t = obtener<T>(index);
+                    listT.Add(t);
+                }
 
-        //        return listT;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
+                return listT;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         public T obtener<T>(int id)
         {
