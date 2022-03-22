@@ -43,8 +43,8 @@
             this.btnBorrar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtIdBusca = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtIdBusca = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -160,7 +160,7 @@
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(116, 40);
             this.btnBorrar.TabIndex = 11;
-            this.btnBorrar.Text = "     Borrar";
+            this.btnBorrar.Text = "        Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
             this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
@@ -192,14 +192,6 @@
             this.panel2.Size = new System.Drawing.Size(429, 90);
             this.panel2.TabIndex = 15;
             // 
-            // txtIdBusca
-            // 
-            this.txtIdBusca.Location = new System.Drawing.Point(15, 49);
-            this.txtIdBusca.Name = "txtIdBusca";
-            this.txtIdBusca.Size = new System.Drawing.Size(104, 20);
-            this.txtIdBusca.TabIndex = 12;
-            this.txtIdBusca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdBusca_KeyPress);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -210,6 +202,14 @@
             this.label5.Size = new System.Drawing.Size(26, 18);
             this.label5.TabIndex = 13;
             this.label5.Text = "ID:";
+            // 
+            // txtIdBusca
+            // 
+            this.txtIdBusca.Location = new System.Drawing.Point(15, 49);
+            this.txtIdBusca.Name = "txtIdBusca";
+            this.txtIdBusca.Size = new System.Drawing.Size(104, 20);
+            this.txtIdBusca.TabIndex = 12;
+            this.txtIdBusca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdBusca_KeyPress);
             // 
             // Form1
             // 

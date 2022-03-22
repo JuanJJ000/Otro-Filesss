@@ -51,7 +51,7 @@ namespace Infraestructure.Repository
             }
         }
 
-        public void Delete(Activo t)
+        public void Delete(int g)
         {
             throw new NotImplementedException();
         }

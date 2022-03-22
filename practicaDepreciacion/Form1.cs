@@ -85,7 +85,7 @@ namespace practicaDepreciacion
         }
         private bool verificar()
         {
-            if (String.IsNullOrEmpty(txtNombre.Text) || String.IsNullOrEmpty(txtValor.Text) || String.IsNullOrEmpty(txtVidaU.Text) || String.IsNullOrEmpty(txtValorR.Text))
+            if (String.IsNullOrEmpty(txtIdBusca.Text) || String.IsNullOrEmpty(txtNombre.Text) || String.IsNullOrEmpty(txtValor.Text) || String.IsNullOrEmpty(txtVidaU.Text) || String.IsNullOrEmpty(txtValorR.Text))
             {
 
                 return false;
@@ -98,6 +98,7 @@ namespace practicaDepreciacion
             this.txtValor.Text = String.Empty;
             this.txtValorR.Text = String.Empty;
             this.txtVidaU.Text = String.Empty;
+            this.txtIdBusca.Text = String.Empty;
         }
         #endregion
 
@@ -185,19 +186,20 @@ namespace practicaDepreciacion
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            
-
-
-
-
-
-
-
-
+            MessageBox.Show("Aseguresé de escribir el Id");
             DialogResult a = MessageBox.Show("¿Esta seguro de borrar el archivo?", "Borrando dato...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (a == DialogResult.Yes)
             {
-                
+
+                activoServices.Delete(int.Parse(txtIdBusca.Text));
+                dataGridView1.DataSource = null;
+                limpiar();
+                dataGridView1.DataSource = activoServices.Read();
+
+
+
+
+
             }
             else
             {

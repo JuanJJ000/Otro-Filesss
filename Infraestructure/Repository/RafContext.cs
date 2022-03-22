@@ -133,6 +133,9 @@ namespace Infraestructure.Repository
                                  bwData = new BinaryWriter(DataStream))
                 {
                     int n = 0, k = 0;
+
+
+
                     using (BinaryReader brHeader = new BinaryReader(bwHeader.BaseStream))
                     {
                         if (brHeader.BaseStream.Length > 0)
@@ -142,6 +145,10 @@ namespace Infraestructure.Repository
                             k = brHeader.ReadInt32();
                         }
 
+                        if (Id <= 0 || Id > k)
+                        {
+                            return;
+                        }
                         //calculamos la posicion en Data
                         long pos = (Id-1) * size;
                         bwData.BaseStream.Seek(pos, SeekOrigin.Begin);
@@ -197,13 +204,7 @@ namespace Infraestructure.Repository
                             }
                         }
 
-                        //long posh = 8 + n * 4;
-                        //bwHeader.BaseStream.Seek(posh, SeekOrigin.Begin);
-                        //bwHeader.Write(k);
-
-                        //bwHeader.BaseStream.Seek(0, SeekOrigin.Begin);
-                        //bwHeader.Write(++n);
-                        //bwHeader.Write(k);
+                     
                     }
                 }
             }
@@ -337,6 +338,42 @@ namespace Infraestructure.Repository
                 throw;
             }
         }
+
+        public void Delete<T>(int Id)
+        {
+            try
+            {
+                using (BinaryWriter bwHeader = new BinaryWriter(HeaderStream),
+                                 bwTemp = new BinaryWriter(Temp))
+                {
+                    int n = 0, k = 0;
+                    using (BinaryReader brHeader = new BinaryReader(bwHeader.BaseStream))
+                    {
+                        if (brHeader.BaseStream.Length > 0)
+                        {
+                            brHeader.BaseStream.Seek(0, SeekOrigin.Begin);
+                            n = brHeader.ReadInt32();
+                            k = brHeader.ReadInt32();
+                        }
+                        bwTemp.BaseStream.Seek(0, SeekOrigin.Begin);
+
+                        if (Id <= 0 || Id > k)
+                        {
+                            return;
+                        }
+
+
+                        long elimina = 8 + (Id - 1) * 4;
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         public List<T> Find<T>(Expression<Func<T, bool>> where)
         {
