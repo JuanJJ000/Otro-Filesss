@@ -30,7 +30,7 @@ namespace Infraestructure.Repository
 
         public void Delete(int g)
         {
-            context.Delete<Activo>(g);
+            context.Delete(g);
         }
 
         public Activo GetById(int id)

@@ -149,7 +149,11 @@ namespace practicaDepreciacion
         private void btnActualizar_Click(object sender, EventArgs e)
         {
 
-            MessageBox.Show("Aseguresé de escribir el Id");
+            if (txtIdBusca.Text == String.Empty || txtIdBusca == null)
+            {
+                MessageBox.Show("Aseguresé de escribir el Id");
+                return;
+            }
 
             DialogResult a = MessageBox.Show("¿Esta seguro de actualizar el archivo?", "Actualizando el archivo...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (a == DialogResult.Yes)
@@ -186,19 +190,21 @@ namespace practicaDepreciacion
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Aseguresé de escribir el Id");
+            if (txtIdBusca.Text == String.Empty || txtIdBusca == null)
+            {
+                MessageBox.Show("Aseguresé de escribir el Id");
+                return;
+            }
             DialogResult a = MessageBox.Show("¿Esta seguro de borrar el archivo?", "Borrando dato...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (a == DialogResult.Yes)
             {
+               
+
 
                 activoServices.Delete(int.Parse(txtIdBusca.Text));
                 dataGridView1.DataSource = null;
                 limpiar();
                 dataGridView1.DataSource = activoServices.Read();
-
-
-
-
 
             }
             else
@@ -206,66 +212,18 @@ namespace practicaDepreciacion
                 MessageBox.Show("Se cancelo esta acción");
             }
 
-
-
         }
 
-        
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            
+            DialogResult r = MessageBox.Show("¿Estas Seguro?", "Salir de la Aplicacion", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (r == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
 
 
-
-        //private void crearToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    btnEnviar.Show(); txtNombre.Show();
-        //    txtValor.Show();
-        //    txtValorR.Show();
-        //    txtVidaU.Show();
-        //    label1.Show();
-        //    label2.Show();
-        //    label3.Show();
-        //    label4.Show();
-        //}
-        //btnActualizar.Hide();
-        //btnBorrar.Hide();
-        //DialogResult a = MessageBox.Show("¿Actualizar?", "¿Que esta solicitando?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        //           if (a == DialogResult.Yes)
-        //{
-        //    btnBorrar.Hide();
-        //    btnEnviar.Hide();
-        //    btnActualizar.Show();
-        //    txtNombre.Show();
-        //    txtValor.Show();
-        //    txtValorR.Show();
-        //    txtVidaU.Show();
-        //    label1.Show();
-        //    label2.Show();
-        //    label3.Show();
-        //    label4.Show();
-        //}
-        //else {
-        //    DialogResult b = MessageBox.Show("¿Borrar?", "¿Que esta solicitando?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-        //    if (b == DialogResult.Yes)
-        //    {
-        //        btnEnviar.Hide();
-        //        btnActualizar.Hide();
-        //        btnBorrar.Show();
-        //        txtNombre.Hide();
-        //        txtValor.Hide();
-        //        txtValorR.Hide();
-        //        txtVidaU.Hide();
-        //        label1.Hide();
-        //        label2.Hide();
-        //        label3.Hide();
-        //        label4.Hide();
-
-        //    }
-        //    else
-        //    {
-        //        btnEnviar.Show();
-        //        MessageBox.Show("No se seleccionó ninguna opción");
-        //    }
-
-        //}
     }
 }

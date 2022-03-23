@@ -14,6 +14,7 @@ namespace Infraestructure.Repository
     {
         private string fileName;
         private int size;
+        private static int NumDelete;
         
         public RAFContext(string fileName, int size)
         {
@@ -24,6 +25,7 @@ namespace Infraestructure.Repository
         public Stream HeaderStream
         {
             get => File.Open($"{fileName}.hd", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+
         }
 
         public Stream DataStream
@@ -31,9 +33,9 @@ namespace Infraestructure.Repository
             get => File.Open($"{fileName}.dat", FileMode.OpenOrCreate, FileAccess.ReadWrite);
         }
 
-        public Stream Temp
+        public Stream TempStream
         {
-            get => File.Open($"{fileName}.hd", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            get => File.Open($"Temporal.hd", FileMode.OpenOrCreate, FileAccess.ReadWrite);
         }
 
 
@@ -231,13 +233,13 @@ namespace Infraestructure.Repository
                         k = brHeader.ReadInt32();
                     }
 
-                    if (id <= 0 || id > k)
+                    if ((id+1) <= 0 || (id+1) > k)
                     {
                         return default(T);
                     }
 
                     PropertyInfo[] properties = newValue.GetType().GetProperties();
-                    long posh = 8 + (id - 1) * 4;
+                    long posh = 8 + (id) * 4;
                     //TODO Add Binary search to find the id
                     brHeader.BaseStream.Seek(posh, SeekOrigin.Begin);
                     int index = brHeader.ReadInt32();
@@ -327,7 +329,7 @@ namespace Infraestructure.Repository
                         index = brHeader.ReadInt32();
                     }
                
-                    T t = Get<T>(index);
+                    T t = Get<T>(i);
                     listT.Add(t);
                 }
 
@@ -339,44 +341,7 @@ namespace Infraestructure.Repository
             }
         }
 
-        public void Delete<T>(int Id)
-        {
-            //"basicamente" los datos del Headerstream lo pasamos a una lista excepto el id que queremos eliminar
-            //luego la lista la pasamos al archivo temporal, y luego el archivo temporal lo pasamos al headerstream
 
-
-            try
-            {
-                using (BinaryWriter bwHeader = new BinaryWriter(HeaderStream),
-                                 bwTemp = new BinaryWriter(Temp))
-                {
-                    int n = 0, k = 0;
-                    using (BinaryReader brHeader = new BinaryReader(bwHeader.BaseStream))
-                    {
-                        if (brHeader.BaseStream.Length > 0)
-                        {
-                            brHeader.BaseStream.Seek(0, SeekOrigin.Begin);
-                            n = brHeader.ReadInt32();
-                            k = brHeader.ReadInt32();
-                        }
-                        bwTemp.BaseStream.Seek(0, SeekOrigin.Begin);
-
-                        if (Id <= 0 || Id > k)
-                        {
-                            return;
-                        }
-
-                  
-                        long elimina = 8 + (Id - 1) * 4;
-
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
 
 
         public List<T> Find<T>(Expression<Func<T, bool>> where)
@@ -429,128 +394,85 @@ namespace Infraestructure.Repository
         }
 
 
-        public List<T> ObtenerTemp<T>()
+        public void Delete(int Id)
         {
-            List<T> listT = new List<T>();
-            int n = 0, k = 0;
+            //"basicamente" los datos del Headerstream lo pasamos a una lista excepto el id que queremos eliminar
+            //luego la lista la pasamos al archivo temporal, y luego el archivo temporal lo pasamos al headerstream
+            List<int> HDtemp = new List<int>();
 
             try
             {
-                using (BinaryReader brHeader = new BinaryReader(HeaderStream))
+
+                using (BinaryWriter bwHeader = new BinaryWriter(HeaderStream),
+                                  bwTemp = new BinaryWriter(TempStream))
                 {
-                    if (brHeader.BaseStream.Length > 0)
+                    int n = 0, k = 0;
+                    using (BinaryReader brHeader = new BinaryReader(bwHeader.BaseStream),
+                               brTemp = new BinaryReader(bwTemp.BaseStream))
                     {
+                        if (brHeader.BaseStream.Length > 0)
+                        {
+                            brHeader.BaseStream.Seek(0, SeekOrigin.Begin);
+                            n = brHeader.ReadInt32();
+                            k = brHeader.ReadInt32();
+                        }
+
+                        //calculamos la posicion en Data
+                        // no le mueva que lo de abajo funciona
+                        bwTemp.BaseStream.Seek(0, SeekOrigin.Begin);
                         brHeader.BaseStream.Seek(0, SeekOrigin.Begin);
-                        n = brHeader.ReadInt32();
-                        k = brHeader.ReadInt32();
+
+                        if (brHeader.BaseStream.Length == brTemp.BaseStream.Length || Id <= 0)
+                        {
+
+                            return;
+
+                        }
+                        for (int i = 0; i < (2 + n); i++)
+                        {
+
+                            HDtemp.Add(brHeader.ReadInt32());
+                            //Console.WriteLine(HDtemp[i]);
+                            //Console.WriteLine("||||| espacios ");
+                        }
+                        //no mover 
+                        bwTemp.Write(n - 1);
+                        bwTemp.Write(k);
+
+                        int count = 2;
+                        for (int i = 0; i < n; i++)
+                        {
+
+                            if (HDtemp[count] != Id)
+                            {
+                                NumDelete = HDtemp[count];
+                                //Console.WriteLine(HDtemp[count]);
+                                bwTemp.Write(HDtemp[count]);
+
+                            }
+                            count++;
+                        }
+                        //Console.WriteLine($"Este es el n ---> {n - 1}");
+
+
+
+
+
                     }
                 }
+                File.Delete($"{fileName}.hd");
+                File.Copy("Temporal.hd", $"{fileName}.hd");
+                File.Delete($"Temporal.hd");
+                ++NumDelete;
 
-                if (n == 0)
-                {
-                    return listT;
-                }
 
-                for (int i = 0; i < n; i++)
-                {
-                    int index;
-                    using (BinaryReader brHeader = new BinaryReader(HeaderStream))
-                    {
-                        long posh = 8 + i * 4;
-                        brHeader.BaseStream.Seek(posh, SeekOrigin.Begin);
-                        index = brHeader.ReadInt32();
-                    }
 
-                    T t = obtener<T>(index);
-                    listT.Add(t);
-                }
-
-                return listT;
             }
             catch (Exception)
             {
                 throw;
             }
         }
-
-        public T obtener<T>(int id)
-        {
-            try
-            {
-                T newValue = (T)Activator.CreateInstance(typeof(T));
-                int n = 0, k = 0;
-                using (BinaryReader brHeader = new BinaryReader(HeaderStream),
-                                    brData = new BinaryReader(DataStream))
-                {
-                    if (brHeader.BaseStream.Length > 0)
-                    {
-                        brHeader.BaseStream.Seek(0, SeekOrigin.Begin);
-                        n = brHeader.ReadInt32();
-                        k = brHeader.ReadInt32();
-                    }
-
-                    if (id <= 0 || id > k)
-                    {
-                        return default(T);
-                    }
-
-                    PropertyInfo[] properties = newValue.GetType().GetProperties();
-                    long posh = 8 + (id - 1) * 4;
-                    //TODO Add Binary search to find the id
-                    brHeader.BaseStream.Seek(posh, SeekOrigin.Begin);
-                    int index = brHeader.ReadInt32();
-                    //TODO VALIDATE INDEX
-                    long posd = (index - 1) * size;
-                    brHeader.BaseStream.Seek(posd, SeekOrigin.Begin);
-                    foreach (PropertyInfo pinfo in properties)
-                    {
-                        Type type = pinfo.PropertyType;
-
-                        if (type.IsGenericType)
-                        {
-                            continue;
-                        }
-
-                        if (type == typeof(int))
-                        {
-                            pinfo.SetValue(newValue, brHeader.GetValue<int>(TypeCode.Int32));
-                        }
-                        else if (type == typeof(long))
-                        {
-                            pinfo.SetValue(newValue, brHeader.GetValue<long>(TypeCode.Int64));
-                        }
-                        else if (type == typeof(float))
-                        {
-                            pinfo.SetValue(newValue, brHeader.GetValue<float>(TypeCode.Single));
-                        }
-                        else if (type == typeof(double))
-                        {
-                            pinfo.SetValue(newValue, brHeader.GetValue<double>(TypeCode.Double));
-                        }
-                        else if (type == typeof(decimal))
-                        {
-                            pinfo.SetValue(newValue, brHeader.GetValue<decimal>(TypeCode.Decimal));
-                        }
-                        else if (type == typeof(char))
-                        {
-                            pinfo.SetValue(newValue, brHeader.GetValue<char>(TypeCode.Char));
-                        }
-                        else if (type == typeof(bool))
-                        {
-                            pinfo.SetValue(newValue, brHeader.GetValue<bool>(TypeCode.Boolean));
-                        }
-                        else if (type == typeof(string))
-                        {
-                            pinfo.SetValue(newValue, brHeader.GetValue<string>(TypeCode.String));
-                        }
-                    }
-                }
-                return newValue;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+       //
     }
 }

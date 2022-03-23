@@ -45,6 +45,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.txtIdBusca = new System.Windows.Forms.TextBox();
+            this.btnSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -189,7 +190,7 @@
             this.panel2.Controls.Add(this.btnActualizar);
             this.panel2.Location = new System.Drawing.Point(378, 104);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(429, 90);
+            this.panel2.Size = new System.Drawing.Size(447, 90);
             this.panel2.TabIndex = 15;
             // 
             // label5
@@ -211,12 +212,23 @@
             this.txtIdBusca.TabIndex = 12;
             this.txtIdBusca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdBusca_KeyPress);
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(844, 12);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(38, 38);
+            this.btnSalir.TabIndex = 16;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(894, 460);
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
@@ -252,6 +264,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtIdBusca;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnSalir;
     }
 }
 
