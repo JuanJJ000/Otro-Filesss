@@ -396,8 +396,9 @@ namespace Infraestructure.Repository
 
         public void Delete(int Id)
         {
-            //"basicamente" los datos del Headerstream lo pasamos a una lista excepto el id que queremos eliminar
-            //luego la lista la pasamos al archivo temporal, y luego el archivo temporal lo pasamos al headerstream
+            //"basicamente" los datos del Headerstream lo pasamos a una lista 
+            //luego la lista la pasamos al archivo temporal excepto el id que queremos eliminar
+            //, y luego el archivo temporal lo pasamos al headerstream
             List<int> HDtemp = new List<int>();
 
             try
