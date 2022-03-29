@@ -71,25 +71,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Formulario\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Formulario\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDepreciacion.cs">
+    <Compile Include="Formulario\FrmDepreciacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDepreciacion.Designer.cs">
+    <Compile Include="Formulario\FrmDepreciacion.Designer.cs">
       <DependentUpon>FrmDepreciacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulario\FrmEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulario\FrmEmpleado.Designer.cs">
+      <DependentUpon>FrmEmpleado.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Formulario\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDepreciacion.resx">
+    <EmbeddedResource Include="Formulario\FrmDepreciacion.resx">
       <DependentUpon>FrmDepreciacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulario\FrmEmpleado.resx">
+      <DependentUpon>FrmEmpleado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -3,6 +3,7 @@ using AppCore.Services;
 using Autofac;
 using Domain.Interfaces;
 using Infraestructure.Repository;
+using practicaDepreciacion.Formulario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace practicaDepreciacion
             builder.RegisterType<ActivoServices>().As<IActivoServices>();
             var container = builder.Build();
 
-            Application.Run(new Form1(container.Resolve<IActivoServices>()));
+            Application.Run(new FrmEmpleado(container.Resolve<IActivoServices>()));
         }
     }
 }
