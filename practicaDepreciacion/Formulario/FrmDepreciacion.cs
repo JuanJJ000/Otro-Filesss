@@ -16,8 +16,8 @@ namespace practicaDepreciacion
 {
     public partial class FrmDepreciacion : Form
     {
-        private Activo activo;
-        public FrmDepreciacion(Activo Activo)
+        private ActivoFijo activo;
+        public FrmDepreciacion(ActivoFijo Activo)
         {
             this.activo = Activo;
             InitializeComponent();

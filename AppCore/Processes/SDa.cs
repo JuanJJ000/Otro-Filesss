@@ -10,7 +10,7 @@ namespace AppCore.Processes
 {
     public class SDA : IDepreciacionModel
     {
-        public List<double> Depreciacion(Activo activo)
+        public List<double> Depreciacion(ActivoFijo activo)
         {
            List<double> depreciaciones = new List<double>();
            double TotalVidaUtil= (activo.VidaUtil*(1 + activo.VidaUtil))/2;

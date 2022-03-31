@@ -28,7 +28,7 @@ namespace practicaDepreciacion
             builder.RegisterType<ActivoServices>().As<IActivoServices>();
             var container = builder.Build();
 
-            Application.Run(new FrmEmpleado(container.Resolve<IActivoServices>()));
+            Application.Run(new Form1(container.Resolve<IActivoServices>()));
         }
     }
 }

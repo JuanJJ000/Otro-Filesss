@@ -115,7 +115,7 @@ namespace practicaDepreciacion
             else
             {
 
-                Activo activo = new Activo()
+                ActivoFijo activo = new ActivoFijo()
                 {
                     Nombre = txtNombre.Text,
                     Valor = double.Parse(txtValor.Text),
@@ -166,7 +166,7 @@ namespace practicaDepreciacion
                 else
                 {
 
-                    Activo activo = new Activo()
+                    ActivoFijo activo = new ActivoFijo()
                     {
                         Nombre = txtNombre.Text,
                         Valor = double.Parse(txtValor.Text),
@@ -223,7 +223,5 @@ namespace practicaDepreciacion
                 Application.Exit();
             }
         }
-
-
     }
 }

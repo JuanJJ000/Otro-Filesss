@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Infraestructure.Repository
 {
-    public class ListActivoRepository : BaseRepositoy<Activo>, IActivoModel
+    public class ListActivoRepository : BaseRepositoy<ActivoFijo>, IActivoModel
     {
-        public Activo GetById(int id)
+        public ActivoFijo GetById(int id)
         {
             return data.Where(x => x.Id == id).FirstOrDefault();
 
-            //foreach(Activo activo in data)
+            //foreach(ActivoFijo activo in data)
             //{
             //    if (activo.Id == id)
             //    {

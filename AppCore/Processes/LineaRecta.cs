@@ -10,7 +10,7 @@ namespace AppCore.Processes
 {
     public class LineaRecta : IDepreciacionModel
     {
-        public List<double> Depreciacion(Activo activo)
+        public List<double> Depreciacion(ActivoFijo activo)
         {   
             double depreciacion = (activo.Valor - activo.ValorResidual) / activo.VidaUtil;
             return Enumerable.Repeat<double>(depreciacion, activo.VidaUtil).ToList();                        

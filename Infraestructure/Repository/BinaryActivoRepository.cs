@@ -16,11 +16,11 @@ namespace Infraestructure.Repository
         {
             context = new RAFContext("activo", SIZE);
         }
-        public void Add(Activo t)
+        public void Add(ActivoFijo t)
         {
             try
             {
-                context.Create<Activo>(t);
+                context.Create<ActivoFijo>(t);
             }
             catch (Exception)
             {
@@ -33,11 +33,11 @@ namespace Infraestructure.Repository
             context.Delete(g);
         }
 
-        public Activo GetById(int id)
+        public ActivoFijo GetById(int id)
         {
             try
             {
-                return context.Get<Activo>(id);
+                return context.Get<ActivoFijo>(id);
             }
             catch (Exception)
             {
@@ -45,11 +45,11 @@ namespace Infraestructure.Repository
             }
         }
 
-        public List<Activo> Read()
+        public List<ActivoFijo> Read()
         {
             try
             {
-                return context.GetAll<Activo>();
+                return context.GetAll<ActivoFijo>();
             }
             catch (Exception)
             {
@@ -57,11 +57,11 @@ namespace Infraestructure.Repository
             }
         }
 
-        public void Update(Activo t, int g)
+        public void Update(ActivoFijo t, int g)
         {
             try
             {
-                context.Actualizar<Activo>(t, g);
+                context.Actualizar<ActivoFijo>(t, g);
             }
             catch (Exception)
             {

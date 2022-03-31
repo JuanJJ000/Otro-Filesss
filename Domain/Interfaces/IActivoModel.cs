@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface IActivoModel: IModel<Activo>
+    public interface IActivoModel: IModel<ActivoFijo>
     {
-        Activo GetById(int id); 
+
+
+
+        ActivoFijo GetById(int id); 
 
     }
 }

@@ -13,41 +13,68 @@ namespace Infraestructure.Repository
 
 
         private RAFContext context;
-        private const int SIZE = 119;
+        private const int SIZE = 334;
 
 
         public ActivoRepository()
         { 
-             context = new RAFContext("activo", SIZE);
+             context = new RAFContext("activoFijo", SIZE);
         }
 
-
-        public void Add(Activo t)
+        public void Add(ActivoFijo t)
         {
-            throw new NotImplementedException();
+            try
+            {
+                context.Create<ActivoFijo>(t);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Delete(int g)
         {
-            throw new NotImplementedException();
+            context.Delete(g);
         }
 
-        public Activo GetById(int id)
+        public ActivoFijo GetById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return context.Get<ActivoFijo>(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public List<Activo> Read()
+        public List<ActivoFijo> Read()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return context.GetAll<ActivoFijo>();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public void Update(Activo t, int g)
+        public void Update(ActivoFijo t, int g)
         {
-            throw new NotImplementedException();
+            try
+            {
+                context.Actualizar<ActivoFijo>(t, g);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
 
-        
+
     }
 }

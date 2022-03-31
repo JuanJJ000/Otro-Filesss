@@ -18,12 +18,12 @@ namespace Infraestructure.Repository
         {
             
         }
-        public void Add(Activo t)
+        public void Add(ActivoFijo t)
         {
             try
             {
                 int id = 0;
-                Activo last = Read().LastOrDefault();
+                ActivoFijo last = Read().LastOrDefault();
 
                 if (last == null)
                 {
@@ -42,6 +42,7 @@ namespace Infraestructure.Repository
                     binaryWriter.Write(t.Valor);
                     binaryWriter.Write(t.VidaUtil);
                     binaryWriter.Write(t.ValorResidual);
+                  
                 }
 
             }
@@ -56,9 +57,9 @@ namespace Infraestructure.Repository
             throw new NotImplementedException();
         }
 
-        public Activo GetById(int id)
+        public ActivoFijo GetById(int id)
         {
-            Activo activo = null;
+            ActivoFijo activo = null;
             bool success = false;
 
             try
@@ -75,13 +76,14 @@ namespace Infraestructure.Repository
                     binaryReader.BaseStream.Seek(0, SeekOrigin.Begin);
                     while (binaryReader.BaseStream.Position < length)
                     {
-                        activo = new Activo()
+                        activo = new ActivoFijo()
                         {
                             Id = binaryReader.ReadInt32(),
                             Nombre = binaryReader.ReadString(),
                             Valor = binaryReader.ReadDouble(),
                             VidaUtil = binaryReader.ReadInt32(),
-                            ValorResidual = binaryReader.ReadDouble()
+                            ValorResidual = binaryReader.ReadDouble(),
+                            codigo = Guid.NewGuid()
                         };
 
                         if(activo.Id == id)
@@ -99,9 +101,9 @@ namespace Infraestructure.Repository
             }
         }
 
-        public List<Activo> Read()
+        public List<ActivoFijo> Read()
         {
-            List<Activo> activos = new List<Activo>();
+            List<ActivoFijo> activos = new List<ActivoFijo>();
             try
             {
                 using (FileStream fileStream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Read))
@@ -116,13 +118,14 @@ namespace Infraestructure.Repository
                     binaryReader.BaseStream.Seek(0, SeekOrigin.Begin);
                     while (binaryReader.BaseStream.Position < length)
                     {
-                        activos.Add(new Activo()
+                        activos.Add(new ActivoFijo()
                         {
                             Id = binaryReader.ReadInt32(),
                             Nombre = binaryReader.ReadString(),
                             Valor = binaryReader.ReadDouble(),
                             VidaUtil = binaryReader.ReadInt32(),
-                            ValorResidual = binaryReader.ReadDouble()
+                            ValorResidual = binaryReader.ReadDouble(),
+                            codigo = Guid.NewGuid()
                         });
                     }
                 }
@@ -135,7 +138,7 @@ namespace Infraestructure.Repository
 
         }
 
-        public void Update(Activo t, int g)
+        public void Update(ActivoFijo t, int g)
         {
             throw new NotImplementedException();
         }

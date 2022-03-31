@@ -287,6 +287,7 @@ namespace Infraestructure.Repository
                         {
                             pinfo.SetValue(newValue, brData.GetValue<string>(TypeCode.String));
                         }
+                        
                     }                   
                 }
                 return newValue;

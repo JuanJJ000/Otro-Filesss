@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AppCore.IServices
 {
-   public interface IActivoServices: IServices<Activo>
+   public interface IActivoServices: IServices<ActivoFijo>
     {
-        Activo GetById(int id);
+        ActivoFijo GetById(int id);
     }
 }
