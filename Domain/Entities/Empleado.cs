@@ -8,7 +8,7 @@ namespace Domain.Entities
 {
     public class Empleado
     {
-        public string Id { get; set; }
+        public string id { get; set; }
         public string Cedula { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
