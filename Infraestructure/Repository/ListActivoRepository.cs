@@ -13,7 +13,7 @@ namespace Infraestructure.Repository
     {
         public Activo GetById(int id)
         {
-            return data.Where(x => x.Id == id).FirstOrDefault();
+            return data.Where(x => x.id == id).FirstOrDefault();
 
             //foreach(Activo activo in data)
             //{
