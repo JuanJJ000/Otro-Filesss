@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEmpleado));
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -43,13 +44,24 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAsignacion = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtIdBusca = new System.Windows.Forms.TextBox();
+            this.btnBorrar = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.Button();
+            this.btnAgrega = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cmbActivos = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightSlateGray;
+            this.panel1.BackColor = System.Drawing.Color.LightBlue;
             this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.label7);
@@ -66,7 +78,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(25, 22);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(397, 264);
+            this.panel1.Size = new System.Drawing.Size(281, 264);
             this.panel1.TabIndex = 15;
             // 
             // textBox3
@@ -181,28 +193,127 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Nombre:";
             // 
-            // button1
+            // btnAsignacion
             // 
-            this.button1.Location = new System.Drawing.Point(122, 308);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 35);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Agregar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAsignacion.Location = new System.Drawing.Point(628, 375);
+            this.btnAsignacion.Name = "btnAsignacion";
+            this.btnAsignacion.Size = new System.Drawing.Size(94, 57);
+            this.btnAsignacion.TabIndex = 17;
+            this.btnAsignacion.Text = "   Asignar     Activo";
+            this.btnAsignacion.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(473, 147);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(447, 150);
+            this.dataGridView1.TabIndex = 18;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LightBlue;
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.txtIdBusca);
+            this.panel2.Controls.Add(this.btnBorrar);
+            this.panel2.Controls.Add(this.btnActualizar);
+            this.panel2.Location = new System.Drawing.Point(473, 22);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(447, 116);
+            this.panel2.TabIndex = 19;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label8.Location = new System.Drawing.Point(53, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(26, 18);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "ID:";
+            // 
+            // txtIdBusca
+            // 
+            this.txtIdBusca.Location = new System.Drawing.Point(15, 49);
+            this.txtIdBusca.Name = "txtIdBusca";
+            this.txtIdBusca.Size = new System.Drawing.Size(104, 20);
+            this.txtIdBusca.TabIndex = 12;
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrar.Image")));
+            this.btnBorrar.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnBorrar.Location = new System.Drawing.Point(300, 29);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(116, 40);
+            this.btnBorrar.TabIndex = 11;
+            this.btnBorrar.Text = "        Borrar";
+            this.btnBorrar.UseVisualStyleBackColor = true;
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizar.Image")));
+            this.btnActualizar.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnActualizar.Location = new System.Drawing.Point(155, 29);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(116, 40);
+            this.btnActualizar.TabIndex = 10;
+            this.btnActualizar.Text = "      Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = true;
+            // 
+            // btnAgrega
+            // 
+            this.btnAgrega.Image = ((System.Drawing.Image)(resources.GetObject("btnAgrega.Image")));
+            this.btnAgrega.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnAgrega.Location = new System.Drawing.Point(81, 310);
+            this.btnAgrega.Name = "btnAgrega";
+            this.btnAgrega.Size = new System.Drawing.Size(116, 40);
+            this.btnAgrega.TabIndex = 14;
+            this.btnAgrega.Text = "           Agregar";
+            this.btnAgrega.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(538, 316);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(159, 24);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "ActivosFijos(Id):";
+            // 
+            // cmbActivos
+            // 
+            this.cmbActivos.FormattingEnabled = true;
+            this.cmbActivos.Location = new System.Drawing.Point(686, 319);
+            this.cmbActivos.Name = "cmbActivos";
+            this.cmbActivos.Size = new System.Drawing.Size(141, 21);
+            this.cmbActivos.TabIndex = 21;
             // 
             // FrmEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(1025, 444);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.cmbActivos);
+            this.Controls.Add(this.btnAgrega);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnAsignacion);
             this.Controls.Add(this.panel1);
             this.Name = "FrmEmpleado";
             this.Text = "FrmEmpleado";
             this.Load += new System.EventHandler(this.FrmEmpleado_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -223,6 +334,15 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAsignacion;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtIdBusca;
+        private System.Windows.Forms.Button btnBorrar;
+        private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.Button btnAgrega;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cmbActivos;
     }
 }

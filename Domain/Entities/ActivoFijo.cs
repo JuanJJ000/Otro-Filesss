@@ -19,7 +19,7 @@ namespace Domain.Entities
         public double ValorResidual { get; set; }      
         public Guid codigo { get; set; }
 
-
+        
 
     }
 }

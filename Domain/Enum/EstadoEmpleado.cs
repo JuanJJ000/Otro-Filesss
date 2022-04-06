@@ -8,5 +8,11 @@ namespace Domain.Enum
 {
     public enum EstadoEmpleado
     {
+
+        Vacaciones,
+        Incapacidad,
+        Activo,
+        Maternidad
+
     }
 }

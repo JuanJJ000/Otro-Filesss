@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Enum
+namespace Infraestructure.Repository
 {
-   public enum EstadoActivo
+    public class Detalle_Activo_EmpleadoRepository
     {
-        MalEstado,
-        Reparacion,
-        Asignado,
-        Disponible
 
+
+        string luis = "xd";
+         
     }
 }
