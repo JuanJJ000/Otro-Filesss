@@ -14,16 +14,25 @@ namespace practicaDepreciacion.Formulario
 {
     public partial class FrmEmpleado : Form
     {
-        IActivoServices activoServices;
-        public FrmEmpleado(IActivoServices activoServices)
+        IEmpleadoServices empleadoServices;
+      
+        public FrmEmpleado(IEmpleadoServices EmpleadoServices)
         {
-                this.activoServices = activoServices;
+                this.empleadoServices = EmpleadoServices;
                 InitializeComponent();
         }
 
         private void FrmEmpleado_Load(object sender, EventArgs e)
         {
 
+            dataGridView1.DataSource = empleadoServices.Read();
+
+        }
+
+        private void btnMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            Close();
+                         
         }
     }
 }

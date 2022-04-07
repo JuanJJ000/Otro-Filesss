@@ -71,11 +71,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Formulario\Form1.cs">
+    <Compile Include="Formulario\FrmActivo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulario\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Formulario\FrmActivo.Designer.cs">
+      <DependentUpon>FrmActivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulario\FrmAsignar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulario\FrmAsignar.Designer.cs">
+      <DependentUpon>FrmAsignar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulario\MenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulario\MenuPrincipal.Designer.cs">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Formulario\FrmDepreciacion.cs">
       <SubType>Form</SubType>
@@ -91,14 +103,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Formulario\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Formulario\FrmActivo.resx">
+      <DependentUpon>FrmActivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulario\FrmAsignar.resx">
+      <DependentUpon>FrmAsignar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\FrmDepreciacion.resx">
       <DependentUpon>FrmDepreciacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\FrmEmpleado.resx">
       <DependentUpon>FrmEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulario\MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEmpleado));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -54,6 +54,7 @@
             this.btnAgrega = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbActivos = new System.Windows.Forms.ComboBox();
+            this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -62,7 +63,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightBlue;
-            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.cmbEstado);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
@@ -78,21 +79,27 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(25, 22);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(281, 264);
+            this.panel1.Size = new System.Drawing.Size(281, 251);
             this.panel1.TabIndex = 15;
             // 
-            // textBox3
+            // cmbEstado
             // 
-            this.textBox3.Location = new System.Drawing.Point(97, 174);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 18;
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Items.AddRange(new object[] {
+            "Vacaciones",
+            "Incapacidad",
+            "Activo",
+            "Maternidad"});
+            this.cmbEstado.Location = new System.Drawing.Point(97, 177);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(121, 21);
+            this.cmbEstado.TabIndex = 23;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(97, 148);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.Size = new System.Drawing.Size(121, 20);
             this.textBox2.TabIndex = 17;
             // 
             // label7
@@ -117,7 +124,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(97, 122);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(121, 20);
             this.textBox1.TabIndex = 10;
             // 
             // label5
@@ -133,28 +140,28 @@
             // 
             this.txtValorR.Location = new System.Drawing.Point(97, 70);
             this.txtValorR.Name = "txtValorR";
-            this.txtValorR.Size = new System.Drawing.Size(100, 20);
+            this.txtValorR.Size = new System.Drawing.Size(121, 20);
             this.txtValorR.TabIndex = 3;
             // 
             // txtCedula
             // 
             this.txtCedula.Location = new System.Drawing.Point(97, 18);
             this.txtCedula.Name = "txtCedula";
-            this.txtCedula.Size = new System.Drawing.Size(100, 20);
+            this.txtCedula.Size = new System.Drawing.Size(121, 20);
             this.txtCedula.TabIndex = 1;
             // 
             // txtValor
             // 
             this.txtValor.Location = new System.Drawing.Point(97, 44);
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(100, 20);
+            this.txtValor.Size = new System.Drawing.Size(121, 20);
             this.txtValor.TabIndex = 2;
             // 
             // txtVidaU
             // 
             this.txtVidaU.Location = new System.Drawing.Point(97, 96);
             this.txtVidaU.Name = "txtVidaU";
-            this.txtVidaU.Size = new System.Drawing.Size(100, 20);
+            this.txtVidaU.Size = new System.Drawing.Size(121, 20);
             this.txtVidaU.TabIndex = 4;
             // 
             // label4
@@ -291,12 +298,23 @@
             this.cmbActivos.Size = new System.Drawing.Size(141, 21);
             this.cmbActivos.TabIndex = 21;
             // 
+            // btnMenuPrincipal
+            // 
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(930, 199);
+            this.btnMenuPrincipal.Name = "btnMenuPrincipal";
+            this.btnMenuPrincipal.Size = new System.Drawing.Size(83, 51);
+            this.btnMenuPrincipal.TabIndex = 23;
+            this.btnMenuPrincipal.Text = "MenuPrincipal";
+            this.btnMenuPrincipal.UseVisualStyleBackColor = true;
+            this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
+            // 
             // FrmEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1025, 444);
+            this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cmbActivos);
             this.Controls.Add(this.btnAgrega);
@@ -333,7 +351,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button btnAsignacion;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel2;
@@ -344,5 +361,7 @@
         private System.Windows.Forms.Button btnAgrega;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cmbActivos;
+        private System.Windows.Forms.ComboBox cmbEstado;
+        private System.Windows.Forms.Button btnMenuPrincipal;
     }
 }

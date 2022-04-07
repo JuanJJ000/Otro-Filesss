@@ -1,5 +1,6 @@
 ﻿using AppCore.IServices;
 using Domain.Entities;
+using practicaDepreciacion.Formulario;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace practicaDepreciacion
     public partial class Form1 : Form
     {
         IActivoServices activoServices;
+       
         public Form1(IActivoServices ActivoServices)
         {
             this.activoServices = ActivoServices;
@@ -118,10 +120,19 @@ namespace practicaDepreciacion
                 ActivoFijo activo = new ActivoFijo()
                 {
                     Nombre = txtNombre.Text,
+                    Descripción = txtDescripcion.Text,
                     Valor = double.Parse(txtValor.Text),
                     ValorResidual=double.Parse(txtValorR.Text),
-                    VidaUtil= int.Parse(txtVidaU.Text)
+                    VidaUtil= int.Parse(txtVidaU.Text),
+                    
+                        
+
                 };
+
+              
+
+
+
                 activoServices.Add(activo);
                 dataGridView1.DataSource = null;
                 limpiar();
@@ -140,12 +151,15 @@ namespace practicaDepreciacion
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+    
+        private void FrmActivoLoad(object sender, EventArgs e)
         {
             dataGridView1.DataSource = activoServices.Read();
-        
-        }
+            
 
+
+
+        }
         private void btnActualizar_Click(object sender, EventArgs e)
         {
 
@@ -177,6 +191,13 @@ namespace practicaDepreciacion
                     dataGridView1.DataSource = null;
                     limpiar();
                     dataGridView1.DataSource = activoServices.Read();
+
+
+
+
+
+
+
 
                 }
             }
@@ -222,6 +243,12 @@ namespace practicaDepreciacion
             {
                 Application.Exit();
             }
+        }
+
+        private void btnPrincipal_Click(object sender, EventArgs e)
+        {
+
+            Close();
         }
     }
 }

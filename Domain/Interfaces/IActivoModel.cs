@@ -15,5 +15,8 @@ namespace Domain.Interfaces
 
         ActivoFijo GetById(int id); 
 
+
+
+
     }
 }
